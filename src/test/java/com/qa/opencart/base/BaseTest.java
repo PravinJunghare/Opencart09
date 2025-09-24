@@ -22,9 +22,9 @@ public class BaseTest {
 	@BeforeTest
 	public void setUp() {
 		df = new Driverfactory();// created driver factory object
-		// prop=df.initProp();
-		driver = df.initDriver("chrome");// to call initDriver method to get driver
-		// driver=df.initDriver(prop);
+		 prop=df.initProp();
+		//driver = df.initDriver("chrome");// to call initDriver method to get driver
+		 driver=df.initDriver(prop);
 		loginPage = new LoginPage(driver);
 	}
 

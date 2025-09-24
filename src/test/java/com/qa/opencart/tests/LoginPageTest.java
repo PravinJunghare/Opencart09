@@ -1,24 +1,26 @@
-package com.qa.opencart.tests;
 
+package com.qa.opencart.tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-
 import com.qa.opencart.base.BaseTest;
+import static com.qa.opencart.constant.AppConstant.*;
+import com.qa.opencart.pages.AccountsPage;
 
 public class LoginPageTest extends BaseTest {
+	
 
 	@Test(priority = 1)
 	public void loginPageTitleTest() {
 		String actTitle = loginPage.getLoginPageTitle();
-		Assert.assertEquals(actTitle, "Account Login");
+		Assert.assertEquals(actTitle,LOGIN_PAGE_TITLE_VALUE);
 
 	}
 
 	@Test(priority = 2)
 	public void loginPageUrlTest() {
 		String actUrl = loginPage.getLoginUrl();
-		Assert.assertTrue(actUrl.contains("route=account/login"));
+		Assert.assertTrue(actUrl.contains(LOGIN_PAGE_URL_FRACTION_VALUE));
 
 	}
 
@@ -27,10 +29,10 @@ public class LoginPageTest extends BaseTest {
 		Assert.assertTrue(loginPage.isForgotpwdLinkExits());
 	}
 
-	@Test(priority=Short.MAX_VALUE)
+	@Test(priority = 4)
 	public void loginTest() {
-		String actAccpageTitle = loginPage.doLogin("jan2025@gmail.com", "12345");
-		Assert.assertEquals(actAccpageTitle, "My Account");
-
+		// String accpageTitle = loginPage.doLogin("jan2025@gmail.com", "12345");
+		AccountsPage accpageTitle = loginPage.doLogin(prop.getProperty("username"), prop.getProperty("password"));
+	
 	}
-}
+	}
