@@ -74,18 +74,19 @@ public class AccountsPage {
 		return accHeaderValList;
 	}
 	
-	public void doSearch(String searchKey) {
+	public SearchPage doSearch(String searchKey) {
 		if (isSearchExist())
 
 		{
+			System.out.println("Searchkey:"+searchKey);
 			eleUtil.doSendKeys(search, searchKey);
 			eleUtil.doClick(searchIcon);
-			//return new SearchPage(driver);
+			return new SearchPage(driver);
 			
 		} else {
 			System.out.println("Search Field is not exist on page...");
 		}
-		//return null;
+		return null;
 
 	}
 }

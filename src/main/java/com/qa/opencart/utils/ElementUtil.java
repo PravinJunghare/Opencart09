@@ -2,7 +2,9 @@ package com.qa.opencart.utils;
 
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.TimeoutException;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -204,7 +206,13 @@ public class ElementUtil {
 	 */
 	public List<WebElement> waitForElementsVisible(By locator, int timeOut) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeOut));
-		return wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
+		try {
+			return wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
+		}
+		catch(org.openqa.selenium.TimeoutException  e)
+		{
+			return Collections.EMPTY_LIST;
+		}
 	}
 
 	/**
